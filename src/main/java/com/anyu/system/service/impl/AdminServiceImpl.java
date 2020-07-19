@@ -27,15 +27,17 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper,Admin> implements 
         HashMap<String, Object> map = new HashMap<>(1);
         Admin admin = getByName(username);
         if (admin == null) {
-            map.put("msg", "admin不存在");
+            map.put("msg", "admin不存在！");
             return map;
         }
-        password = CommonUtil.generateUUIDString(admin.getPassword() + admin.getSalt());
+        password = CommonUtil.md5(password + admin.getSalt());
         if (!password.equals(admin.getPassword())) {
             map.put("msg", "密码错误！");
-            return map;
         }
-        return null;
+        //生成随机登录cookie值
+        String ticket = CommonUtil.generateUUIDString();
+        map.put("ticket", ticket);
+        return map;
     }
 
     @Override
@@ -49,14 +51,14 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper,Admin> implements 
         }
         //
         String salt = CommonUtil.generateUUIDString().substring(0, 6);
-        password = CommonUtil.generateUUIDString(password + salt);
         Admin admin = new Admin();
-        admin.setName(username).setPassword(password).setSalt(salt);
+        admin.setName(username)
+                .setPassword(CommonUtil.md5(password + salt))
+                .setSalt(salt);
         if (!this.save(admin)) {
             map.put("msg", "添加admin出错");
-            return map;
         }
-        return null;
+        return map;
     }
 
     @Override

@@ -1,18 +1,21 @@
 server:
+  address: localhost
   port: 80
   servlet:
     context-path: /system
+
 spring:
   application:
     name: employee-management-system
-  #\u6570\u636E\u6E90\u914D\u7F6E
+  #
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/mng_system?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
-
+  thymeleaf:
+    cache: false
 
 
 mybatis-plus:
@@ -22,3 +25,6 @@ mybatis-plus:
       logic-not-delete-value: 0
   mapper-locations: classpath:/mapper/**/*.mapper
 
+system:
+  admin:
+    login-alive-time: 3600*24
