@@ -30,13 +30,25 @@ public class EmployeeController {
         return "pages/employee/list";
     }
 
-
     /**
-     *离职员工列表
+     * 离职员工列表
      */
     @GetMapping("/del")
     public String getDeleteEmployeePage() {
         return "pages/employee/del";
     }
+
+    @GetMapping("/edit")
+    public String getEditEmployeePage() {
+        return "pages/employee/edit";
+    }
+
+
+    @GetMapping("/add")
+    public String getAddEmployeePage() {
+        return "pages/employee/add";
+    }
+
+
 
 }
