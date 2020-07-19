@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,10 +9,10 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon" />
-    <link rel="stylesheet" th:href="@{/css/font.css}">
-    <link rel="stylesheet" th:href="@{/css/weadmin.css}">
-    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/weadmin.css">
+    <script src="lib/layui/layui.js" charset="utf-8"></script>
 
 </head>
 
@@ -23,18 +22,43 @@
         <div class="message">管理员登录</div>
         <div id="darkbannerwrap"></div>
 
-        <form  th:action="@{/login}" method="post" class="layui-form">
-            <input name="username" placeholder="用户名" type="text"
-                   th:value="${username == null ? '' : username}" lay-verify="required" class="layui-input">
+        <form  action="" method="post" class="layui-form">
+            <input name="username" placeholder="用户名" type="text" lay-verify="required" class="layui-input">
             <hr class="hr15">
-            <input name="password" lay-verify="required" placeholder="密码"
-                   th:value="${password == null ? '' : password}" type="password" class="layui-input">
+            <input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input">
             <input class="loginin" value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
         </form>
     </div>
 
     <script type="text/javascript">
 
+        layui.extend({
+            admin: '{/}js/admin'
+        });
+        layui.use(['form','jquery', 'admin'], function () {
+            var form = layui.form
+            var $ = layui.jquery
+            var admin = layui.admin;
+            //监听提交
+            form.on('submit(login)', function (data) {
+                // alert(888)
+                $.ajax({
+                    type: "post",
+                    url: "/system/login",
+                    data: data.field,
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.code === 200) {
+                            location.href = 'index'
+                        }else {
+                            layer.msg(resp.msg);
+                            return false
+                        }
+                    }
+                });
+                return false;
+            });
+        });   
     </script>
     <!-- 底部结束 -->
 </body>

@@ -33,6 +33,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper,Admin> implements 
         password = CommonUtil.md5(password + admin.getSalt());
         if (!password.equals(admin.getPassword())) {
             map.put("msg", "密码错误！");
+            return map;
         }
         //生成随机登录cookie值
         String ticket = CommonUtil.generateUUIDString();

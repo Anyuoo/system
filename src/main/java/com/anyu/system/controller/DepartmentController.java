@@ -2,6 +2,7 @@ package com.anyu.system.controller;
 
 import com.anyu.system.entity.Department;
 import com.anyu.system.service.DepartmentService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -12,8 +13,8 @@ import javax.annotation.Resource;
  * @author Anyu
  * @since 2020-07-18 16:18:27
  */
-@RestController
-@RequestMapping("/department")
+@Controller
+@RequestMapping("/dept")
 public class DepartmentController {
     /**
      * 服务对象
@@ -21,15 +22,13 @@ public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
 
+
     /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
+     *部门列表
      */
-    @GetMapping("selectOne")
-    public Department selectOne(Integer id) {
-        return departmentService.getById(id);
+    @GetMapping("/list")
+    public String getDepartmentPage() {
+        return "pages/department/list";
     }
 
 }

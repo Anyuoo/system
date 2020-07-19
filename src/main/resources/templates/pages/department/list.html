@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>List</title>
+		<meta name="renderer" content="webkit" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<link rel="stylesheet" href="../css/font.css" />
+		<link rel="stylesheet" href="../css/weadmin.css" />
+	</head>
+
+	<body>
+		<!-- 第一部分 -->
+		<div class="weadmin-nav">
+			<span class="layui-breadcrumb">
+				<a href="javascript:;">首页</a> <a href="javascript:;">部门管理</a>
+				<a href="javascript:;"> <cite>部门列表</cite></a>
+			</span>
+			<a class="layui-btn layui-btn-sm" style="margin-top:3px;float:right" href="javascript:location.replace(location.href);"title="刷新">
+				<i class="layui-icon layui-icon-refresh"></i>
+			</a>
+		</div>
+
+		<!-- 第二部分 部门搜索： -->
+		<div class="weadmin-body">
+			<div class="layui-row">
+				<form action="" class="layui-form layui-col-md12 we-search">
+					部门搜索：
+					<div class="layui-inline">
+						<input class="layui-input" placeholder="请输入部门ID" name="num" id="num" />
+					</div>
+					<div class="layui-inline">
+						<input type="text" name="username" placeholder="请输入部门名称" autocomplete="off" class="layui-input" />
+					</div>
+					<button class="layui-btn" lay-submit="" lay-filter="sreach">
+						<i class="layui-icon layui-icon-search"></i>
+					</button>
+				</form>
+			</div>
+			<div class="weadmin-block">
+				<button class="layui-btn" onclick="WeAdminShow('添加部门','./add.html',600,400)">
+					<i class="layui-icon layui-icon-add-circle-fine"></i>添加
+				</button>
+			</div>
+			<table class="layui-table" id="deptList">
+				<thead>
+					<tr>
+						<th>
+							<div class="layui-unselect header layui-form-checkbox" lay-skin="primary">
+								<i class="layui-icon">&#xe605;</i>
+							</div>
+						</th>
+						<th>ID</th>
+						<th>名称</th>
+						<th>员工数量</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-id="1">
+						<td>
+							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="1">
+								<i class="layui-icon">&#xe605;</i>
+							</div>
+						</td>
+						<td>1</td>
+						<td>公关部</td>
+						<td>50</td>
+						<td class="td-manage">
+							<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html', 1, 600, 400)" href="javascript:;">
+								<i class="layui-icon layui-icon-edit"></i>
+							</a>
+							<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+								<i class="layui-icon layui-icon-delete"></i>
+							</a>
+						</td>
+					</tr>
+					<tr data-id="2">
+						<td>
+							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="2">
+								<i class="layui-icon">&#xe605;</i>
+							</div>
+						</td>
+						<td>2</td>
+						<td>技术部</td>
+						<td>100</td>
+						<td class="td-manage">
+							<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html', 2, 600, 400)" href="javascript:;">
+								<i class="layui-icon layui-icon-edit"></i>
+							</a>
+							<a title="删除" onclick="dept_del(this,'要删除的id')" href="javascript:;">
+								<i class="layui-icon layui-icon-delete"></i>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>
+					<a class="prev" href="">&lt;&lt;</a>
+					<span class="current">1</span> <a class="num" href="">2</a>
+					<a class="next" href="">&gt;&gt;</a>
+				</div>
+			</div>
+		</div>
+		<!--<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
+		<script src="../lib/layui/layui.js" charset="utf-8"></script>
+		<script src="../js/eleDel.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
