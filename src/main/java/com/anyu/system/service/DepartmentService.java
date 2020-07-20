@@ -13,5 +13,9 @@ import java.util.List;
  * @since 2020-07-18 16:18:26
  */
 public interface DepartmentService extends IService<Department> {
+    Department getByName(String name);
 
+    boolean updateStatusById(Integer id, int status);
+
+    List<Department> listDept(int status);
 }

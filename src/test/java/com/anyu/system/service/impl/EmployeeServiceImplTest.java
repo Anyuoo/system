@@ -14,12 +14,15 @@ class EmployeeServiceImplTest {
 
     @Test
     void test() {
-        Employee employee = new Employee();
-        employee.setName("ls")
-                .setAge(14)
-                .setDeptId(1)
-                .setEmail("2812@qq.com")
-                .setSex(1);
-        employeeService.save(employee);
+        for (int i = 0; i < 20; i++) {
+            Employee employee = new Employee();
+            employee.setName("exp"+i)
+                    .setAge(14)
+                    .setDeptId(1)
+                    .setEmail("2812@qq.com")
+                    .setSex(1);
+            employeeService.save(employee);
+        }
+
     }
 }

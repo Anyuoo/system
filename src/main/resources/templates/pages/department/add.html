@@ -33,7 +33,7 @@
 
             </div>
             <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
+                <label class="layui-form-label">
                 </label>
                 <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
                 <input type="hidden" name="dataId" id="dataId" value="" />
@@ -44,7 +44,7 @@
 
     <script>
         layui.extend({
-            admin: '{/}../js/admin'
+            admin: '{/}http://localhost/system/js/admin'
         });
         layui.use(['form', 'jquery', 'util', 'admin', 'layer'], function () {
             var form = layui.form,
@@ -64,42 +64,35 @@
 
             //监听提交
             form.on('submit(add)', function (data) {
-                //console.log(data.field);
                 var f = data.field;
-                //console.log(f.username);
-                //console.log(f.sex);				
-                //var sex = $('input:radio[name="sex"]:checked').val();
 
                 //发异步，把数据提交给php
-                layer.alert("增加成功", {
-                    icon: 6
-                }, function () {
-                    //获取提交成功的时间
-                    // 获得frame索引
-                    var index = parent.layer.getFrameIndex(window.name);
-
-                    var _len = parent.$('#memberList tr').length;
-                    alert(_len);
-                    parent.$('#memberList').append(
-                        '<tr data-id="' + _len + '">' +
-                        '<td>' +
-                        '<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id="' + _len + '"><i class="layui-icon">&#xe605;</i></div>' +
-                        '</td>' +
-                        '<td>' + _len + '</td>' +
-                        '<td>' + f.deptname + '</td>' +
-                        '<td>' + f.num + '</td>' +
-                        '<td class="td-manage">' +
-                        '<a title="编辑" onclick="WeAdminShow(\'编辑\',\'./edit.html\',600,400)" href="javascript:;"><i class="layui-icon">&#xe642;</i></a>' +
-                        '<a title="删除" onclick="member_del(this,\'要删除的id\')" href="javascript:;"><i class="layui-icon">&#xe640;</i></a>' +
-                        '</td>' +
-                        '</tr>'
-                    );
-                    //关闭当前frame
-                    parent.layer.close(index);
+                $.ajax({
+                    type: "post",
+                    url: "/system/dept/add",
+                    data: {name: f.deptname,employeeNum: f.num},
+                    dataType: "json",
+                    success: function (resp) {
+                        // console.log(resp)
+                        if (resp.code === 200) {
+                            layer.alert(resp.msg, {
+                                icon: 6
+                            }, function () {
+                                // 获得frame索引
+                                var index = parent.layer.getFrameIndex(window.name);
+                                //关闭当前frame
+                                parent.layer.close(index);
+                            });
+                        }else {
+                            layer.alert(resp.msg);
+                            return false
+                        }
+                    }
                 });
+                //发异步，把数据提交给php
+
                 return false;
             });
-
         });
     </script>
 </body>

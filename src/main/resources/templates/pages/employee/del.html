@@ -1,120 +1,104 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>删除</title>
-		<meta name="renderer" content="webkit">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<link rel="stylesheet" href="../css/font.css">
-		<link rel="stylesheet" href="../css/weadmin.css">
-	</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>删除</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/weadmin.css}">
+</head>
 
-	<body>
-		<div class="weadmin-nav">
+<body>
+<div class="weadmin-nav">
 			<span class="layui-breadcrumb">
 				<a href="javascript:;">首页</a> <a href="javascript:;">员工管理</a>
 				<a href="javascript:;"><cite>删除员工</cite></a>
 			</span>
-			<a class="layui-btn layui-btn-sm" style="margin-top:3px;float:right" href="javascript:location.replace(location.href);"
-			 title="刷新">
-				<i class="layui-icon layui-icon-refresh"></i>
-			</a>
-		</div>
-		<div class="weadmin-body">
-			<div class="layui-row">
-				<form action="" class="layui-form layui-col-md12 we-search">
-					员工搜索：
-					<div class="layui-inline">
-						<input class="layui-input" placeholder="请输入工号" name="num" id="num" />
-					</div>
-					<div class="layui-inline">
-						<input type="text" name="username" placeholder="请输入名字" autocomplete="off" class="layui-input" />
-					</div>
-					<button class="layui-btn" lay-submit="" lay-filter="sreach">
-						<i class="layui-icon layui-icon-search"></i>
-					</button>
-				</form>
-			</div>
-			<table class="layui-table">
-				<thead>
-					<tr>
-						<th>
-							<div class="layui-unselect header layui-form-checkbox" lay-skin="primary">
-								<i class="layui-icon">&#xe605;</i>
-							</div>
-						</th>
-						<th>ID</th>
-						<th>姓名</th>
-						<th>性别</th>
-						<th>年龄</th>
-						<th>邮箱</th>
-						<th>部门ID</th>
-						<th>入职时间</th>
-						<th>离职时间</th>
-						<th>状态</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'>
-								<i class="layui-icon">&#xe605;</i>
-							</div>
-						</td>
-						<td>1</td>
-						<td>小张</td>
-						<td>男</td>
-						<td>40</td>
-						<td>admin@mail.com</td>
-						<td>公关部</td>
-						<td>2017-01-01 11:11:42</td>
-						<td>2017-01-01 11:11:42</td>
-						<td class="td-status">
-							<span class="layui-btn layui-btn-unnormal layui-btn-xs ">离职</span>
-						</td>
-						<td class="td-manage">
-							<a title="恢复" onclick="member_renew(this,'要恢复的id')" href="javascript:;">
-								<i class="layui-icon layui-icon-list"></i>
-							</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-						</td>
-						<td>2</td>
-						<td>小邱</td>
-						<td>男</td>
-						<td>40</td>
-						<td>admin@mail.com</td>
-						<td>公关部</td>
-						<td>2017-01-01 11:11:42</td>
-						<td>2017-01-01 11:11:42</td>
-						<td class="td-status">
-							<span class="layui-btn layui-btn-unnormal layui-btn-xs ">离职</span>
-						</td>
-						<td class="td-manage">
-							<a title="恢复" onclick="member_renew(this,'要恢复的id')" href="javascript:;">
-								<i class="layui-icon layui-icon-list"></i>
-							</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="page">
-				<div>
-					<a class="prev" href="">&lt;&lt;</a>
-					<span class="current">1</span>
-					<a class="num" href="">2</a>
-					<a class="next" href="">&gt;&gt;</a>
-				</div>
-			</div>
+    <a class="layui-btn layui-btn-sm" style="margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);"
+       title="刷新">
+        <i class="layui-icon layui-icon-refresh"></i>
+    </a>
+</div>
+<div class="weadmin-body">
+    <div class="layui-row">
+        <form action="" class="layui-form layui-col-md12 we-search">
+            员工搜索：
+            <div class="layui-inline">
+                <input class="layui-input" placeholder="请输入工号" name="num" id="num"/>
+            </div>
+            <div class="layui-inline">
+                <input type="text" name="username" placeholder="请输入名字" autocomplete="off" class="layui-input"/>
+            </div>
+            <button class="layui-btn" lay-submit="" lay-filter="sreach">
+                <i class="layui-icon layui-icon-search"></i>
+            </button>
+        </form>
+    </div>
+    <table th:action="@{/employee/del}" class="layui-table">
+        <thead>
+        <tr>
+            <th>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary">
+                    <i class="layui-icon">&#xe605;</i>
+                </div>
+            </th>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>邮箱</th>
+            <th>部门ID</th>
+            <th>入职时间</th>
+            <th>离职时间</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vo, sta : ${page.records}" th:attr="data-id=${sta.index}">
+            <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" th:attr="data-id=${sta.index}" >
+                    <i class="layui-icon">&#xe605;</i>
+                </div>
+            </td>
+            <td id="id" th:text="${vo.employee.id}">1</td>
+            <td th:text="${vo.employee.name}">小张</td>
+            <td th:text="${vo.employee.sex}">男</td>
+            <td th:text="${vo.employee.age}">40</td>
+            <td th:text="${vo.employee.email}">admin@mail.com</td>
+            <td th:text="${vo.department.name}">公关部</td>
+            <td th:text="${vo.employee.entryTime}">2017-01-01 11:11:42</td>
+            <td th:text="${vo.employee.resignTime}">2017-01-01 11:11:42</td>
+            <td class="td-status">
+                <span class="layui-btn layui-btn-unnormal layui-btn-xs "
+                      th:text="${vo.employee.status == 0 ? '在职' : '离职'}">离职</span>
+            </td>
+            <td class="td-manage">
+                <a title="恢复" th:id="${vo.employee.id}" th:onclick="member_renew(this,this.getAttribute('id'))"  href="javascript:void(0);">
+                    <i class="layui-icon layui-icon-list"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="page">
+        <div>
+            <a class="prev" href="">&lt;&lt;</a>
+            <span class="current">1</span>
+            <a class="num" href="">2</a>
+            <a class="next" href="">&gt;&gt;</a>
+        </div>
+    </div>
 
-		</div>
-		<script src="../lib/layui/layui.js" charset="utf-8"></script>
-		<script src="../js/eleDel.js" type="text/javascript" charset="utf-8"></script>
-	</body>
+</div>
+<script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/js/eleDel.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/admin.js}" type="text/javascript" charset="utf-8"></script>
+
+</body>
 
 </html>

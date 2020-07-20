@@ -22,7 +22,6 @@ public class Department implements Serializable {
     @TableField(fill = FieldFill.INSERT)
     private Integer employeeNum;
 
-    @TableLogic
     @TableField(fill = FieldFill.INSERT)
     private Integer status;
 
@@ -63,4 +62,13 @@ public class Department implements Serializable {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", employeeNum=" + employeeNum +
+                ", status=" + status +
+                '}';
+    }
 }

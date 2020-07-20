@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @TableName(value = "employee", autoResultMap = true)
 public class Employee implements Serializable {
     private static final long serialVersionUID = 389775167349803267L;
+
     /**
     * 员工ID
     */
@@ -48,20 +49,19 @@ public class Employee implements Serializable {
     /**
     * 入职时间
     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.DATE_TIME)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime entryTime;
     /**
     * 辞职时间
     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "Asia/Shanghai")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.DATE_TIME)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private LocalDateTime resignTime;
     /**
     * 0-任职；1-离职；2-信息删除
     */
-    @TableLogic
     @TableField(fill = FieldFill.INSERT)
     private Integer status;
 
@@ -146,6 +146,20 @@ public class Employee implements Serializable {
         this.status = status;
         return this;
 
+    }
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", deptId=" + deptId +
+                ", entryTime=" + entryTime +
+                ", resignTime=" + resignTime +
+                ", status=" + status +
+                '}';
     }
 
 }
