@@ -28,7 +28,7 @@
                 trigger: 'axis'
             },
             legend: {
-                data:['公关部','技术部','财务部','工程部','人力资源部']
+                data:['后端','技术部','前端','测试','运维']
             },
             grid: {
                 left: '3%',
@@ -51,54 +51,39 @@
             },
             series: [
                 {
-                    name:'公关部',
+                    name:'后端',
                     type:'line',
                     stack: '总量',
-                    data:[120, 132, 101, 134, 90, 230, 210]
+                    data:[50,34,65,65,87,78,87]
                 },
                 {
                     name:'技术部',
                     type:'line',
                     stack: '总量',
-                    data:[220, 182, 191, 234, 290, 330, 310]
+                    data:[56,78,98,56,98,90,100]
                 },
                 {
-                    name:'财务部',
+                    name:'前端',
                     type:'line',
                     stack: '总量',
-                    data:[150, 232, 201, 154, 190, 330, 410]
+                    data:[13,14,13,15,16,20,23]
                 },
                 {
-                    name:'工程部',
+                    name:'测试',
                     type:'line',
                     stack: '总量',
-                    data:[320, 332, 301, 334, 390, 330, 320]
+                    data:[23,34,23,34,45,34,50]
                 },
                 {
-                    name:'人力资源部',
+                    name: '运维',
                     type:'line',
                     stack: '总量',
-                    data:[820, 932, 901, 934, 1290, 1330, 1320]
+                    data:[12,13,14,13,15,14,14]
                 }
             ]
         };
 
-        // 异步加载数据
-        // $.get('').done(function (data) {
-        //     // 填入数据
-        //     myChart.setOption({
-        //         xAxis: {
-        //             data: data.categories
-        //         },
-        //         series: [{
-        //             // 根据名字对应到相应的系列
-        //             name: '销量',
-        //             data: data.data
-        //         }]
-        //     });
-        // });
 
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     </script>
     </body>

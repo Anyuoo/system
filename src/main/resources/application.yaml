@@ -25,6 +25,3 @@ mybatis-plus:
       logic-not-delete-value: 0
   mapper-locations: classpath:/mapper/**/*.mapper
 
-system:
-  admin:
-    login-alive-time: 3600*24

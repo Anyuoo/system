@@ -1,5 +1,6 @@
 package com.anyu.system.service.impl;
 
+import com.anyu.system.common.util.CommonConstant;
 import com.anyu.system.entity.Employee;
 import com.anyu.system.mapper.EmployeeMapper;
 import com.anyu.system.service.EmployeeService;
@@ -11,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.support.ManagedArray;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 /**
@@ -20,7 +22,7 @@ import java.util.HashMap;
  * @since 2020-07-18 16:18:58
  */
 @Service("employeeService")
-public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper,Employee> implements EmployeeService {
+public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper,Employee> implements EmployeeService, CommonConstant {
 
     @Override
     public IPage<Employee> pageEmployee(IPage<Employee> page) {
@@ -34,6 +36,9 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper,Employee> im
         Employee employee = this.getById(id);
         if (employee == null) {
             return false;
+        }
+        if (status == DeptStatus.ABANDON.getCode()) {
+            employee.setResignTime(LocalDateTime.now());
         }
         employee.setStatus(status);
         return  this.updateById(employee);

@@ -20,7 +20,6 @@ public class MetaDataHandler implements MetaObjectHandler {
         this.strictInsertFill(metaObject,"entryTime", LocalDateTime.class, LocalDateTime.now());
         this.strictInsertFill(metaObject,"age", Integer.class,0);
         this.strictInsertFill(metaObject,"sex", Integer.class, 0);
-
         //员工数量
         this.strictInsertFill(metaObject,"employeeNum", Integer.class, 0);
         //状态
