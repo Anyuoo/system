@@ -47,13 +47,10 @@ public class EmployeeController implements CommonConstant {
 
 
     @GetMapping("/search")
-    public String searchEmployee(Page<EmpAndDeptVO> page, String num, String name, Model model) {
+    public CommonResult searchEmployee(Page<EmpAndDeptVO> page, String num, String name, Model model) {
         page.setSize(20);
         listEmployee(page, num, name, EmplStatus.SERVICE.getCode());
-        model.addAttribute("page", page);
-        model.addAttribute("num", num);
-        model.addAttribute("name", name);
-        return "pages/employee/list";
+        return CommonResult.success(page);
     }
 
     /**

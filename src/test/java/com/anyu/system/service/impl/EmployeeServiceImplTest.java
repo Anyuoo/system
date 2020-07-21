@@ -16,7 +16,7 @@ class EmployeeServiceImplTest {
     void test() {
         for (int i = 0; i < 20; i++) {
             Employee employee = new Employee();
-            employee.setName("exp"+i)
+            employee.setName("广域网"+i)
                     .setAge(14)
                     .setDeptId(1)
                     .setEmail("2812@qq.com")

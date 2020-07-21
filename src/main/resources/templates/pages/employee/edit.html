@@ -70,7 +70,7 @@
                 <span class="we-red"></span>入职时间
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="L_entryTime" name="entryTime" autocomplete="off" class="layui-input">
+                <input  id="L_entryTime" name="entryTime" autocomplete="off" type="text" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -112,6 +112,7 @@
                     var email = tdArr.eq(5).text(); //邮箱
                     var dept = tdArr.eq(6).text(); //部门
                     var entryTime = tdArr.eq(7).text(); //
+
 
                     $('input[name="id"]').val(id);
                     $('input[name="name"]').val(name);
